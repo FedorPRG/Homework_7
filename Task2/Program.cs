@@ -33,17 +33,21 @@ FillArray(matrix);
 PrintArray(matrix);
 Console.WriteLine();
 
-Console.Write("Введите номер ряда искомого элемента: ");
-int mSearch = int.Parse(Console.ReadLine()!);
-
-Console.Write("Введите номер столбца искомого элемента: ");
-int nSearch = int.Parse(Console.ReadLine()!);
-
-if (mSearch >= m | nSearch >= n)
+Console.Write("Введите номер позиции искомого элемента (нумерация начинается с 0): ");
+int x = int.Parse(Console.ReadLine()!);
+int column, row;
+if (x > m * n - 1)
 {
-    Console.Write("Такого числа в массиве нет");
+    Console.WriteLine("Введенная позиция выходит за границы массива");
+    return;
+}
+if (x == 0)
+{
+    column = 0; row = 0;
 }
 else
 {
-    Console.Write("Искомый элемент массива: " + matrix[mSearch, nSearch]);
+    column = x % n;
+    row = x / n;
 }
+Console.Write($"Искомый элемент массива: " + matrix[row, column]);
